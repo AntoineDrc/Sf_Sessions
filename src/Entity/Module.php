@@ -24,6 +24,10 @@ class Module
     #[ORM\OneToMany(targetEntity: SessionModule::class, mappedBy: 'module')]
     private Collection $sessionModules;
 
+    #[ORM\ManyToOne(inversedBy: 'modules')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Category $category = null;
+
     public function __construct()
     {
         $this->sessionModules = new ArrayCollection();
@@ -72,6 +76,18 @@ class Module
                 $sessionModule->setModule(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }

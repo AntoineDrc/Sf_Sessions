@@ -37,6 +37,10 @@ class Session
     #[ORM\ManyToMany(targetEntity: Intern::class, mappedBy: 'sessions')]
     private Collection $interns;
 
+    #[ORM\ManyToOne(inversedBy: 'sessions')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Formation $formation = null;
+
     public function __construct()
     {
         $this->sessionModules = new ArrayCollection();
@@ -137,6 +141,18 @@ class Session
         if ($this->interns->removeElement($intern)) {
             $intern->removeSession($this);
         }
+
+        return $this;
+    }
+
+    public function getFormation(): ?Formation
+    {
+        return $this->formation;
+    }
+
+    public function setFormation(?Formation $formation): static
+    {
+        $this->formation = $formation;
 
         return $this;
     }
