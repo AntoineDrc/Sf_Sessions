@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello InternController!{% endblock %}
+
+{% block body %}
+    <button type="button">Add Intern</button>
+    <div class="interns">
+        {% for intern in interns %}
+        <div class="intern">
+            <div class="intern_logo">
+                <img src="{{ asset('img/face-detection.png')}}" alt="logo profil intern">
+            </div>
+            <div class="intern_name">
+                {{ intern.firstName}} {{intern.lastName}}
+            </div>
+            <div class="intern_email">
+                {{ intern.email}}
+            </div>
+            <div class="intern_trash">
+                <img src="{{ asset('img/trash.png')}}" alt="logo corbeille">
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
