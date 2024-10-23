@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formations disponibles{% endblock %}
+
+{% block body %}
+    <button type="button">Add Session</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nom de la session</th>
+                <th>Prochaine session</th>
+                <th>Capacité</th>
+                <th>Stagiaires inscrits</th>
+                <th>Taux de remplissage</th>
+                <th>Programme</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for session in sessions %}
+                <tr>
+                    <td>{{ session.formation.name }}</td>
+                    <td>{{ session.startDate|date("m/d/Y") }}</td>
+                    <td>{{ session.capacity }}</td>
+                    <td>{{ session.interns|length }}</td>
+                    <td>{{ session.tauxRemplissage }}</td>
+                    <td>
+                        <a href="">
+                            {# <img src="{{ asset('img/Program.png')}}" alt="logo de programme"> #}lien
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
