@@ -7,3 +7,31 @@
 .edit a img, .delete a img {
     height: 2em;
 }
+
+.program img {
+    height: 2em;
+}
+
+.session_card {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.session_card_header {
+    display: flex;
+    gap: 1em;
+}
+
+.session_card_module {
+    display: flex;
+    gap: 1em;
+}
+
+.session_card_module img {
+    height: 2em;
+}
+
+.intern_title img {
+    height: 2em;
+}

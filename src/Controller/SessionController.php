@@ -2,17 +2,19 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Session;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SessionController extends AbstractController
 {
-    #[Route('/session', name: 'app_session')]
-    public function index(): Response
+    #[Route('/session{id}', name: 'detail_session')]
+    public function detail(Session $session): Response
     {
-        return $this->render('session/index.html.twig', [
-            'controller_name' => 'SessionController',
+
+        return $this->render('session/detail.html.twig', [
+            'session' => $session,
         ]);
     }
 }

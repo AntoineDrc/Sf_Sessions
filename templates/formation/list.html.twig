@@ -23,10 +23,10 @@
                     <td>{{ session.startDate|date("m/d/Y") }}</td>
                     <td>{{ session.capacity }}</td>
                     <td>{{ session.interns|length }}</td>
-                    <td>{{ session.tauxRemplissage }}</td>
+                    <td>{{ session.tauxRemplissage }}%</td>
                     <td>
-                        <a href="">
-                            {# <img src="{{ asset('img/Program.png')}}" alt="logo de programme"> #}lien
+                        <a href="{{path('detail_session', {id:session.id})}}" class="program">
+                            <img src="{{ asset('img/Program.png')}}" alt="logo de programme">
                         </a>
                     </td>
                 </tr>

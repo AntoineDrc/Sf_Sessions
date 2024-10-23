@@ -16,12 +16,6 @@ class FormationController extends AbstractController
         $formations = $formationRepository->findAll();
         $sessions = $sessionRepository->findAll();
 
-        // Calcul le taux de remplissage en %
-        foreach ($sessions as $session)
-        {
-            $session->tauxRemplissage = ($session->getInterns()->count() / $session->getCapacity()) * 100;
-        }
-
         return $this->render('formation/list.html.twig', [
             'formations' => $formations,
             'sessions' => $sessions,

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SessionController!{% endblock %}
+
+{% block body %}
+    <div class="session_card">
+        <div class="session_card_header">
+            <p>{{ session.formation.name }}</p>
+            <h4>Prochaine session :</h4>
+            <p>Du {{ session.startDate|date("m/d/Y") }} au {{ session.endDate|date("m/d/Y") }}</p>
+            <p>Capacité : {{ session.getTauxRemplissage() }}%</p>
+        </div>
+        <div class="session_card_module">
+            <div class="module_title">
+                <img src="{{ asset('img/3d.png')}}" alt="logo module">
+                <h4>Modules</h4>
+            </div>
+            <div class="module_list">
+                <ul>
+                    {% for sessionModule in session.sessionModules %}
+                        <li> {{ sessionModule.module.name }} {{sessionModule.duration }}jours</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="session_card_intern">
+            <div class="intern_title">
+                <img src="{{ asset('img/user.png')}}" alt="logo user">
+                <h4>Interns : {{ session.interns|length }}/{{ session.capacity }} inscrits</h4> 
+                <button type="button">Add Intern</button>
+            </div>
+            <div class="intern_list">
+                <ul>
+                    {% for intern in session.interns %}
+                        <li> {{ intern.firstName }} {{intern.lastName }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

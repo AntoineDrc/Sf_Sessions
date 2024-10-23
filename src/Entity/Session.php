@@ -156,4 +156,10 @@ class Session
 
         return $this;
     }
+
+    public function getTauxRemplissage(): float
+    {
+        $nbInsctis = $this->interns->count();
+        return ($nbInsctis / $this->getCapacity()) * 100;
+    }
 }
