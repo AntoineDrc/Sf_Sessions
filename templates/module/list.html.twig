@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ModuleController!{% endblock %}
+
+{% block body %}
+    <button type="button">Add Session</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Module</th>
+                <th>Durée (jours)</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sessionModule in sessionsModules %}
+                <tr>
+                    <td>{{ sessionModule.module.name }}</td>
+                    <td>{{ sessionModule.duration }}</td>
+                    <td>
+                        <a href="">
+                            <button type="button">Edit</button>
+                        </a>
+                        <a href="">
+                            <button type="button">Delete</button>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
