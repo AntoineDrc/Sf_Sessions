@@ -16,6 +16,8 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
+use Symfony\Component\String\Slugger\SluggerInterface;
+
 
 class RegistrationController extends AbstractController
 {
@@ -24,40 +26,57 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, Security $security, EntityManagerInterface $entityManager): Response
-    {
-        $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
-        $form->handleRequest($request);
+public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, Security $security, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
+{
+    $user = new User();
+    $form = $this->createForm(RegistrationFormType::class, $user);
+    $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            /** @var string $plainPassword */
-            $plainPassword = $form->get('plainPassword')->getData();
+    if ($form->isSubmitted() && $form->isValid()) {
+        /** @var string $plainPassword */
+        $plainPassword = $form->get('plainPassword')->getData();
 
-            // encode the plain password
-            $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
+        // encode the plain password
+        $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
 
-            $entityManager->persist($user);
-            $entityManager->flush();
+        // Gérer l'upload de la photo
+        $photoFile = $form->get('photo')->getData();
+        if ($photoFile) {
+            // Générer un nom unique pour le fichier
+            $originalFilename = pathinfo($photoFile->getClientOriginalName(), PATHINFO_FILENAME);
+            $safeFilename = $slugger->slug($originalFilename); // Utilisation de SluggerInterface
+            $newFilename = $safeFilename.'-'.uniqid().'.'.$photoFile->guessExtension();
 
-            // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
-                (new TemplatedEmail())
-                    ->from(new Address('admin@exemple.com', 'Admin Site'))
-                    ->to((string) $user->getEmail())
-                    ->subject('Please Confirm your Email')
-                    ->htmlTemplate('registration/confirmation_email.html.twig')
+            // Déplacer le fichier dans le répertoire des uploads (public/uploads/admins)
+            $photoFile->move(
+                $this->getParameter('photos_directory'), // Ce paramètre doit être défini dans services.yaml
+                $newFilename
             );
 
-            // do anything else you need here, like send an email
-
-            return $this->redirectToRoute('app_login');
+            // Mettre à jour le chemin relatif de la photo dans l'utilisateur
+            $user->setPhoto('uploads/admins/'.$newFilename);
         }
 
-        return $this->render('registration/register.html.twig', [
-            'registrationForm' => $form,
-        ]);
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        // generate a signed url and email it to the user
+        $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+            (new TemplatedEmail())
+                ->from(new Address('admin@exemple.com', 'Admin Site'))
+                ->to((string) $user->getEmail())
+                ->subject('Please Confirm your Email')
+                ->htmlTemplate('registration/confirmation_email.html.twig')
+        );
+
+        return $this->redirectToRoute('app_login');
     }
+
+    return $this->render('registration/register.html.twig', [
+        'registrationForm' => $form,
+    ]);
+}
+
 
     #[Route('/verify/email', name: 'app_verify_email')]
     public function verifyUserEmail(Request $request, TranslatorInterface $translator): Response

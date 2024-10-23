@@ -25,8 +25,8 @@
                     <td>{{ session.interns|length }}</td>
                     <td>{{ session.tauxRemplissage }}%</td>
                     <td>
-                        <a href="{{path('detail_session', {id:session.id})}}" class="program">
-                            <img src="{{ asset('img/Program.png')}}" alt="logo de programme">
+                        <a href="{{path('detail_session', {id:session.id})}}">
+                            <img src="{{ asset('img/Program.png')}}" alt="logo de programme" class="program_logo">
                         </a>
                     </td>
                 </tr>

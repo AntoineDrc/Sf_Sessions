@@ -5,15 +5,15 @@
 {% block body %}
     <div class="session_card">
         <div class="session_card_header">
-            <p>{{ session.formation.name }}</p>
-            <h4>Prochaine session :</h4>
+            <h1>{{ session.formation.name }}</h1>
+            <h2>Prochaine session :</h2>
             <p>Du {{ session.startDate|date("m/d/Y") }} au {{ session.endDate|date("m/d/Y") }}</p>
-            <p>Capacité : {{ session.getTauxRemplissage() }}%</p>
+            <h2>Capacité : {{ session.getTauxRemplissage() }}%</h2>
         </div>
         <div class="session_card_module">
             <div class="module_title">
-                <img src="{{ asset('img/3d.png')}}" alt="logo module">
-                <h4>Modules</h4>
+                <img src="{{ asset('img/3d.png')}}" alt="logo module" class="module_logo">
+                <h3>Modules</h3>
             </div>
             <div class="module_list">
                 <ul>
@@ -25,8 +25,8 @@
         </div>
         <div class="session_card_intern">
             <div class="intern_title">
-                <img src="{{ asset('img/user.png')}}" alt="logo user">
-                <h4>Interns : {{ session.interns|length }}/{{ session.capacity }} inscrits</h4> 
+                <img src="{{ asset('img/user.png')}}" alt="logo user" class="user_logo">
+                <h3>Interns : {{ session.interns|length }}/{{ session.capacity }} inscrits</h3> 
                 <button type="button">Add Intern</button>
             </div>
             <div class="intern_list">
@@ -35,6 +35,14 @@
                         <li> {{ intern.firstName }} {{intern.lastName }}</li>
                     {% endfor %}
                 </ul>
+                <div class="session_card_img">
+                    <a href="">
+                        <img src="{{ asset('img/write.png')}}" alt="logo crayon" class="edit_logo">
+                    </a>
+                    <a href="">
+                        <img src="{{ asset('img/trash.png')}}" alt="logo corbeille" class="delete_logo">
+                    </a>
+                </div>
             </div>
         </div>
     </div>

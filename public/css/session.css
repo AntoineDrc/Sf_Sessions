@@ -1,0 +1,32 @@
+.session_card {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    border: solid 1px black;
+    width: fit-content;
+    padding: 2em;
+}
+
+.session_card_header {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.module_title {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.session_card_module {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.intern_title {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}

@@ -5,12 +5,14 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -28,6 +30,24 @@ class RegistrationFormType extends AbstractType
             ->add('city', TextType::class)
             ->add('phone', TelType::class)
             ->add('email', EmailType::class)
+            ->add('photo', FileType::class, [
+                'label' => 'Photo de profil (JPEG ou PNG)',
+                'mapped' => false, // Ce champ n'est pas lié directement à l'entité User
+                'required' => false, // L'upload est optionnel
+                'constraints' => [
+                    new File([ 
+                        'maxSize' => '1024k', // Taille limite à 1MB
+                        'mimeTypes' => [
+                            'image/jpeg', // Type MIME pour les images JPEG
+                            'image/png',  // Type MIME pour les images PNG
+                        ],
+                        'mimeTypesMessage' => 'Veuillez télécharger une image au format JPEG ou PNG', // Message d'erreur en cas de mauvais type
+                    ])
+                ],
+            ])
+
+            
+            
             ->add('plainPassword', RepeatedType::class, [
                 'mapped' => false,
                 'type' => PasswordType::class,

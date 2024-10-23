@@ -3,24 +3,52 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        {# <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>"> #}
         {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('css/style.css')}}">
         <link rel="stylesheet" href="{{ asset('css/intern.css')}}">
+        <link rel="stylesheet" href="{{ asset('css/session.css')}}">
+        <link rel="stylesheet" href="{{ asset('css/header.css')}}">
         {% endblock %}
 
     </head>
     <body>
-        {% block body %}
-        {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-        {% endif %}
-        {% endblock %}
-
-        {% block javascripts %}
+        <div id="wrapper">
+            <header>
+                <div class="welcome">
+                    {% if app.user %}
+                        <h1>Welcome back {{ app.user.firstName }}</h1>
+                    {% endif %}
+                </div>
+                <div class="admin_info">
+                    <div class="admin_photo">
+                        {% if app.user and app.user.photo %}
+                            <img src="{{ asset(app.user.photo) }}" alt="Photo de {{ app.user.firstName }}" class="photo">
+                        {% else %}
+                        <img src="{{ asset('img/face-detection.png')}}" alt="default profile">
+                        {% endif %}
+                    </div>
+                    <div class="admin_content">
+                        <div class="admin_name">
+                            <p>{{ app.user.firstName }} {{ app.user.lastName }}</p>
+                        </div>
+                        <div class="admin_role">
+                            {% if 'ROLE_ADMIN' in app.user.roles %}
+                                Admin
+                            {% elseif 'ROLE_USER' in app.user.roles %}
+                                Utilisateur
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            {% block body %}
+            {% endblock %}
+            
+            {% block javascripts %}
             <script src="{{ asset('js/main.js') }}"></script>
-        {% endblock %}
+            {% endblock %}
+        </div>
     </body>
 </html>

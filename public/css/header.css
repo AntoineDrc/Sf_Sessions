@@ -1,0 +1,27 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5em 5em;
+}
+
+.admin_info {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.admin_content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7em;
+}
+
+.admin_name {
+    font-size: 1.1em;
+    font-weight:600;
+}
+
+.photo  {
+    height: 5em;
+    border-radius: 50px;
+}
