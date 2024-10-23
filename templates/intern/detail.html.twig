@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Intern Details{% endblock %}
+
+{% block body %}
+    <div class="intern_card">
+        <div class="intern_header">
+            <img src="{{ asset('img/face-detection.png')}}" alt="logo profile intern">
+            <p>{{ intern.firstName }} {{ intern.lastName }}</p>
+        </div>
+        <div class="intern_body">
+            <p>Sex : {{ intern.sex }}</p>
+            <p>Age : {{ intern.age }}</p>
+            <p>City : {{ intern.city }}</p>
+            <p>Mail : {{ intern.email }}</p>
+            <p>Phone : {{ intern.phone }}</p>
+        </div>
+        <div class="intern_footer">
+            <div class="future_session">
+                <h3>Session à venir</h3>
+                <ul>
+                    {% for session in futureSessions %}
+                        <li>{{ session.formation.name }} (du {{ session.startDate|date("m/d/Y") }} au {{ session.endDate|date("m/d/Y") }})</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="past_session">
+                <h3>Session passées</h3>
+                <ul>
+                    {% for session in pastSessions %}
+                        <li>{{ session.formation.name }} (du {{ session.startDate|date("m/d/Y") }} au {{ session.endDate|date("m/d/Y") }})</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="intern_imgs">
+            <div class="edit">
+                <a href="">
+                    <img src="{{ asset('img/write.png') }}" alt="logo de crayon">
+                </a>
+            </div>
+            <div class="delete">
+                <a href="">
+                    <img src="{{ asset('img/trash.png') }}" alt="logo de corbeille">
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

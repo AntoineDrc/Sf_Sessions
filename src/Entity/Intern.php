@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\InternRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -39,6 +40,9 @@ class Intern
      */
     #[ORM\ManyToMany(targetEntity: Session::class, inversedBy: 'interns')]
     private Collection $sessions;
+
+    #[ORM\Column(length: 10, nullable: true)]
+    private ?string $sex = null;
 
     public function __construct()
     {
@@ -144,5 +148,26 @@ class Intern
         $this->sessions->removeElement($session);
 
         return $this;
+    }
+
+    public function getSex(): ?string
+    {
+        return $this->sex;
+    }
+
+    public function setSex(?string $sex): static
+    {
+        $this->sex = $sex;
+
+        return $this;
+    }
+
+    public function getAge(): ?int
+    {
+        $now = new DateTime();
+
+        $age = $now->diff($this->birthDate)->y;
+
+        return $age;
     }
 }

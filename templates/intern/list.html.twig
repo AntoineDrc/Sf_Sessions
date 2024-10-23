@@ -11,7 +11,9 @@
                 <img src="{{ asset('img/face-detection.png')}}" alt="logo profil intern">
             </div>
             <div class="intern_name">
-                {{ intern.firstName}} {{intern.lastName}}
+                <a href="{{ path('detail_intern', { id: intern.id}) }}">
+                    {{ intern.firstName}} {{intern.lastName}}
+                </a>
             </div>
             <div class="intern_email">
                 {{ intern.email}}
