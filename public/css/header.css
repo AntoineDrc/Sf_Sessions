@@ -1,7 +1,9 @@
 header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 1.5em 5em;
+    border-bottom: 1px solid #ddd;
 }
 
 .admin_info {
@@ -18,10 +20,11 @@ header {
 
 .admin_name {
     font-size: 1.1em;
-    font-weight:600;
+    font-weight: 600;
 }
 
-.photo  {
+.photo {
     height: 5em;
     border-radius: 50px;
 }
+

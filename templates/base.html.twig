@@ -4,17 +4,19 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {# <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>"> #}
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('css/style.css')}}">
-        <link rel="stylesheet" href="{{ asset('css/intern.css')}}">
-        <link rel="stylesheet" href="{{ asset('css/session.css')}}">
-        <link rel="stylesheet" href="{{ asset('css/header.css')}}">
+        <link rel="stylesheet" href="{{ asset('css/intern.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/session.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/header.css') }}"> 
+        <link rel="stylesheet" href="{{ asset('css/nav.css') }}"> 
         {% endblock %}
 
     </head>
     <body>
         <div id="wrapper">
             <header>
+                <h1 class="test">test</h1>
                 <div class="welcome">
                     {% if app.user %}
                         <h1>Welcome back {{ app.user.firstName }}</h1>
@@ -30,25 +32,54 @@
                     </div>
                     <div class="admin_content">
                         <div class="admin_name">
-                            <p>{{ app.user.firstName }} {{ app.user.lastName }}</p>
+                            {% if app.user %}
+                                <p>{{ app.user.firstName }} {{ app.user.lastName }}</p>
+                                {% endif %}
                         </div>
                         <div class="admin_role">
-                            {% if 'ROLE_ADMIN' in app.user.roles %}
-                                Admin
-                            {% elseif 'ROLE_USER' in app.user.roles %}
-                                Utilisateur
+                            {% if app.user %}
+                                {% if 'ROLE_ADMIN' in app.user.roles %}
+                                    Admin
+                                {% elseif 'ROLE_USER' in app.user.roles %}
+                                    Utilisateur
+                                {% endif %}
                             {% endif %}
                         </div>
                     </div>
                 </div>
             </header>
-            
-            {% block body %}
-            {% endblock %}
-            
+            <div id="container">
+                <nav>
+                    <div class="app_title">
+                        <img src="{{ asset('img/logoSession.png') }}" alt="logo de l'app" class="app_logo">
+                        <h1>LearnUp</h1>
+                    </div>
+                    <div class="general">
+                        <div class="formations">
+                            <img src="{{ asset('img/planning.png') }}" alt="logo planning" class="general_logo">
+                            <a href="{{path('list_formation') }}">Formations</a>
+                        </div>
+                        <div class="stagiaires">
+                            <img src="{{ asset('img/user.png') }}" alt="logo de user" class="general_logo">
+                            <a href="{{path('list_intern') }}">Interns</a>
+                        </div>
+                        <div class="modules">
+                            <img src="{{ asset('img/3d.png') }}" alt="logo module" class="general_logo">
+                            <a href="{{path('list_module') }}">Modules</a>
+                        </div>
+                        <div class="categories">
+                            <img src="{{ asset('img/dashboard.png') }}" alt="logo categorie" class="general_logo">
+                            <a href="{{ path('list_category') }}">Categories</a>
+                        </div>
+                    </div>
+                </nav>
+                
+                {% block body %}
+                {% endblock %}
+            </div>
+        </div>
             {% block javascripts %}
             <script src="{{ asset('js/main.js') }}"></script>
             {% endblock %}
-        </div>
     </body>
 </html>

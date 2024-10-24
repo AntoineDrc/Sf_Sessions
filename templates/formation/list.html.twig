@@ -3,8 +3,6 @@
 {% block title %}Formations disponibles{% endblock %}
 
 {% block body %}
-    <button type="button">Add Session</button>
-
     <table>
         <thead>
             <tr>
@@ -13,22 +11,23 @@
                 <th>Capacité</th>
                 <th>Stagiaires inscrits</th>
                 <th>Taux de remplissage</th>
-                <th>Programme</th>
             </tr>
         </thead>
         <tbody>
-            {% for session in sessions %}
+            {% for formation in formations %}
                 <tr>
-                    <td>{{ session.formation.name }}</td>
-                    <td>{{ session.startDate|date("m/d/Y") }}</td>
-                    <td>{{ session.capacity }}</td>
-                    <td>{{ session.interns|length }}</td>
-                    <td>{{ session.tauxRemplissage }}%</td>
                     <td>
-                        <a href="{{path('detail_session', {id:session.id})}}">
-                            <img src="{{ asset('img/Program.png')}}" alt="logo de programme" class="program_logo">
-                        </a>
+                        <a href="{{path('listById_formation', {id:formation.id})}}">{{ formation.name }}</a>
                     </td>
+                    {% set nextSession = formation.getNextSession %}
+                    {% if nextSession %}
+                        <td>{{ nextSession.startDate|date("m/d/Y") }}</td>
+                        <td>{{ nextSession.capacity }}</td>
+                        <td>{{ nextSession.interns|length }}</td>
+                        <td>{{ nextSession.tauxRemplissage }}%</td>
+                    {% else %}
+                        <td colspan="5">Pas de session à venir</td>
+                    {% endif %}
                 </tr>
             {% endfor %}
         </tbody>

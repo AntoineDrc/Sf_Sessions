@@ -17,4 +17,5 @@ class SessionController extends AbstractController
             'session' => $session,
         ]);
     }
+
 }

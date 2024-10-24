@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\FormationRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -74,5 +75,18 @@ class Formation
         }
 
         return $this;
+    }
+
+    public function getNextSession(): ?Session
+    {
+        $now = new \DateTime();
+        foreach ($this->sessions as $session)
+        {
+            if ($session->getStartDate() > $now)
+            {
+                return $session;
+            }
+        }
+        return null;
     }
 }
