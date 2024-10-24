@@ -26,8 +26,11 @@
         <div class="session_card_intern">
             <div class="intern_title">
                 <img src="{{ asset('img/user.png')}}" alt="logo user" class="user_logo">
-                <h3>Interns : {{ session.interns|length }}/{{ session.capacity }} inscrits</h3> 
-                <button type="button">Add Intern</button>
+                <h3>Interns : {{ session.interns|length }}/{{ session.capacity }} inscrits</h3>
+                <a href="{{ path('new_intern')}}">
+                    <button type="button">Add Intern</button>
+                </a>
+                
             </div>
             <div class="intern_list">
                 <ul>

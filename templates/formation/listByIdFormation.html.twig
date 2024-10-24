@@ -5,7 +5,10 @@
 {% block body %}
 <h1>Formations disponibles actuellement</h1>
 <div class="tableau_sessions">
-    <button type="button">Add Session</button>
+    <a href="{{ path('new_session')}}">
+        <button type="button">Add Session</button>
+    </a>
+    
     <table class="table table-striped table-bordered">
         <thead class="table-secondary">
             <tr>
