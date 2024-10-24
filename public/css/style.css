@@ -17,11 +17,135 @@ p {
 #wrapper {
     display: flex;
     flex-direction: column;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
     height: 100vh;
 }
 
-
-#container {
+header {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5em 5em;
+    border-bottom: 1px solid #ddd;
 }
 
+nav {
+    display: flex;
+    flex-direction: column;
+    background-color: #e0e0e0;
+    padding: 1em;
+}
+
+section {
+    padding: 4.5em;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section h1 {
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.admin_info {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.admin_content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7em;
+}
+
+.admin_name {
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.photo {
+    height: 5em;
+    border-radius: 50px;
+}
+
+
+
+.app_title {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.app_logo {
+    height: 2em;
+}
+
+.general {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+.general_logo {
+    height: 3em;
+}
+
+.formations, .stagiaires, .modules, .categories {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+
+.intern {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    border-top: solid 1px black;
+    padding: 0.5em;
+    margin-top: 0.5em;
+}
+
+.intern_trash img {
+    height: 2em;
+}
+
+.session_card {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    border: solid 1px black;
+    width: fit-content;
+    padding: 2em;
+}
+
+.session_card_header {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.module_title {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.session_card_module {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.intern_title {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
