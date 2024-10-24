@@ -5,7 +5,8 @@
 {% block body %}
 <div class="interns">
     <h1>Stagiaires</h1>
-    <button type="button">Add Intern</button>
+    <a href="{{ path('new_intern') }}"><button type="button">Add Intern</button></a>
+    
     {% for intern in interns %}
     <div class="intern">
         <div class="intern_logo">
