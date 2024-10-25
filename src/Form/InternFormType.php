@@ -27,11 +27,6 @@ class InternFormType extends AbstractType
             ->add('email', EmailType::class)
             ->add('phone', TextType::class)
             ->add('sex', TextType::class)
-            ->add('sessions', EntityType::class, [
-                'class' => Session::class,
-                'choice_label' => 'formation.name',
-                'multiple' => true,
-            ])
             ->add('valider', SubmitType::class)
         ;
     }

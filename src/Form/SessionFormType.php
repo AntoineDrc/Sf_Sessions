@@ -25,11 +25,6 @@ class SessionFormType extends AbstractType
             ->add('endDate', DateTimeType::class, [
                 'widget' => 'single_text',
             ])
-            ->add('interns', EntityType::class, [
-                'class' => Intern::class,
-                'choice_label' => 'lastName',
-                'multiple' => true,
-            ])
             ->add('formation', EntityType::class, [
                 'class' => Formation::class,
                 'choice_label' => 'name',

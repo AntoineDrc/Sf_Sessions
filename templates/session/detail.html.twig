@@ -26,7 +26,7 @@
         <div class="session_card_intern">
             <div class="intern_title">
                 <img src="{{ asset('img/user.png')}}" alt="logo user" class="user_logo">
-                <h3>Interns : {{ session.interns|length }}/{{ session.capacity }} inscrits</h3>
+                <h3>Stagiaires inscrits : {{ session.interns|length }}/{{ session.capacity }} inscrits</h3>
                 <a href="{{ path('new_intern')}}">
                     <button type="button">Add Intern</button>
                 </a>
@@ -38,14 +38,26 @@
                         <li> {{ intern.firstName }} {{intern.lastName }}</li>
                     {% endfor %}
                 </ul>
-                <div class="session_card_img">
-                    <a href="">
-                        <img src="{{ asset('img/write.png')}}" alt="logo crayon" class="edit_logo">
-                    </a>
-                    <a href="{{ path('delete_session', {id:session.id}) }}">
-                        <img src="{{ asset('img/trash.png')}}" alt="logo corbeille" class="delete_logo">
-                    </a>
-                </div>
+            </div>
+            <div class="non_inscrits">
+                <h3>Stagiaires non inscrits</h3>
+                <ul>
+                    {% if nonInscrits is not empty %}
+                        {% for nonInscrit in nonInscrits %}
+                            <li>{{ nonInscrit.firstName }} {{ nonInscrit.lastName }}</li>
+                        {% endfor %}
+                    {% else %}
+                        <li>Aucun Stagiaire disponible</li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="session_card_img">
+                <a href="">
+                    <img src="{{ asset('img/write.png')}}" alt="logo crayon" class="edit_logo">
+                </a>
+                <a href="{{ path('delete_session', {id:session.id}) }}">
+                    <img src="{{ asset('img/trash.png')}}" alt="logo corbeille" class="delete_logo">
+                </a>
             </div>
         </div>
     </div>

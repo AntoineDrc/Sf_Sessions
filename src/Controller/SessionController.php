@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Session;
 use App\Form\SessionFormType;
+use App\Repository\InternRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,12 +13,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SessionController extends AbstractController
 {
+    // Méthode détail d'une Session
     #[Route('/session{id}', name: 'detail_session')]
-    public function detail(Session $session): Response
+    public function detail(Session $session, InternRepository $internRepository): Response
     {
+        $nonInscrits = $internRepository->findNonInscrits($session->getId());
 
         return $this->render('session/detail.html.twig', [
             'session' => $session,
+            'nonInscrits' => $nonInscrits,
         ]);
     }
 

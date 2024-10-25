@@ -40,4 +40,28 @@ class InternRepository extends ServiceEntityRepository
     //            ->getOneOrNullResult()
     //        ;
     //    }
+
+    public function findNonInscrits($session_id)
+{
+    $em = $this->getEntityManager();
+
+    // Sous-requête pour obtenir les stagiaires déjà inscrits dans la session
+    $sub = $em->createQueryBuilder();
+    $sub->select('s.id')
+        ->from('App\Entity\Intern', 's')
+        ->leftJoin('s.sessions', 'se')
+        ->where('se.id = :id');
+
+    // Requête principale pour obtenir les stagiaires qui ne sont PAS dans la session
+    $qb = $em->createQueryBuilder();
+    $qb->select('st')
+        ->from('App\Entity\Intern', 'st')
+        ->where($qb->expr()->notIn('st.id', $sub->getDQL())) // Exclure les stagiaires inscrits
+        ->setParameter('id', $session_id)
+        ->orderBy('st.lastName', 'ASC'); // Trier par nom
+
+    return $qb->getQuery()->getResult();
+}
+
+
 }
