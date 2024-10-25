@@ -16,12 +16,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ModuleController extends AbstractController
 {
     #[Route('module', name: 'list_module')]
-    public function list(SessionModuleRepository $sessionModuleRepository): Response
+    public function list(ModuleRepository $moduleRepository): Response
     {
-        $sessionsModules = $sessionModuleRepository->findAll();
+        $modules = $moduleRepository->findAll();
 
         return $this->render('module/list.html.twig', [
-            'sessionsModules' => $sessionsModules,
+            'modules' => $modules,
         ]);
     }
 

@@ -13,22 +13,20 @@
         <thead class="table-secondary">
             <tr>
                 <th>Module</th>
-                <th>Session</th>
-                <th>Durée (jours)</th>
+                <th>Category</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            {% for sessionModule in sessionsModules %}
+            {% for module in modules %}
                 <tr>
-                    <td>{{ sessionModule.module.name }}</td>
-                    <td>{{ sessionModule.session.formation.name }}</td>
-                    <td>{{ sessionModule.duration }}</td>
+                    <td>{{ module.name }}</td>
+                    <td>{{ module.category.name }}</td>
                     <td>
                         <a href="">
                             <button type="button">Edit</button>
                         </a>
-                        <a href="{{ path('delete_module', {id:sessionModule.module.id} )}}">
+                        <a href="{{ path('delete_module', {id:module.id} )}}">
                             <button type="button">Delete</button>
                         </a>
                     </td>
