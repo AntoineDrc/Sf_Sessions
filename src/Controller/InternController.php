@@ -57,6 +57,18 @@ class InternController extends AbstractController
         ]);
     }
 
+    // Méthode de suppression d'un Intern 
+    #[Route('intern/delete/{id}', name: 'delete_intern')]
+    public function delete(Intern $intern, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($intern);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('list_intern', [
+            'interns' => $intern,
+        ]);
+    }
+
     // Méthode détails d'un Intern
     #[Route('intern/{id}', name: 'detail_intern')]
     public function detail(Intern $intern): Response

@@ -23,7 +23,9 @@
             {{ intern.email}}
         </div>
         <div class="intern_trash">
-            <img src="{{ asset('img/trash.png')}}" alt="logo corbeille" class="delete_logo">
+            <a href="{{ path('delete_intern', {id:intern.id}) }}">
+                <img src="{{ asset('img/trash.png')}}" alt="logo corbeille" class="delete_logo">
+            </a>
         </div>
     </div>
     {% endfor %}
