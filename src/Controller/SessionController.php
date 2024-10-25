@@ -52,4 +52,16 @@ class SessionController extends AbstractController
         ]);
     }
 
+    // Méthode de suppression d'une Session
+    #[Route('session/delete/{id}', name: 'delete_session')]
+    public function delete(Session $session, EntityManagerInterface $entityManager): Response
+    {
+        $entityManager->remove($session);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('list_formation', [
+            'session' => $session,
+        ]);
+    }
+
 }

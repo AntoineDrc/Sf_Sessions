@@ -65,7 +65,7 @@ class InternController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('list_intern', [
-            'interns' => $intern,
+            'intern' => $intern,
         ]);
     }
 
