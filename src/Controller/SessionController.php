@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Intern;
 use App\Entity\Session;
 use App\Form\SessionFormType;
 use App\Repository\InternRepository;
+use App\Repository\SessionRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -68,4 +70,15 @@ class SessionController extends AbstractController
         ]);
     }
 
+    // Méthode d'ajout d'un stagiaire à une session spécifique
+    #[Route('session{session}/intern{intern}/add', name: 'add_intern_session')]
+    public function addInternSession(Session $session, Intern $intern, EntityManagerInterface $entityManager)
+    {
+        $session->addIntern($intern);
+
+        $entityManager->persist($session);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('detail_session', ['id' => $session->getId()]);
+    }
 }

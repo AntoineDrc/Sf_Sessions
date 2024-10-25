@@ -5,13 +5,25 @@
     padding: 0;
 } */
 
+section h1 {
+    /* color: red !important; */
+}
+
 p {
     margin-block-start: 0;
     margin-block-end: 0;
 }
 
-.edit_logo, .delete_logo, .module_logo, .user_logo, .program_logo {
+.edit_logo, .add_logo, .delete_logo, .module_logo, .user_logo, .program_logo, .remove_logo {
     height: 2em;
+}
+
+.general_logo {
+    height: 3em;
+}
+
+.app_logo {
+    height: 3em;
 }
 
 #wrapper {
@@ -83,18 +95,10 @@ section h1 {
     gap: 1em;
 }
 
-.app_logo {
-    height: 2em;
-}
-
 .general {
     display: flex;
     flex-direction: column;
     gap: 2em;
-}
-
-.general_logo {
-    height: 3em;
 }
 
 .formations, .stagiaires, .modules, .categories {
@@ -142,6 +146,11 @@ section h1 {
     display: flex;
     flex-direction: column;
     gap: 1em;
+}
+
+.non_inscrits {
+    display: flex;
+    flex-direction: column;
 }
 
 .intern_title {

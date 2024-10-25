@@ -41,15 +41,22 @@
             </div>
             <div class="non_inscrits">
                 <h3>Stagiaires non inscrits</h3>
-                <ul>
-                    {% if nonInscrits is not empty %}
+                {% if nonInscrits is not empty %}
+                    <ul>
                         {% for nonInscrit in nonInscrits %}
-                            <li>{{ nonInscrit.firstName }} {{ nonInscrit.lastName }}</li>
+                            <li>{{ nonInscrit.firstName }} {{ nonInscrit.lastName }}
+                                <a href="{{path('add_intern_session', {session:session.id, intern:nonInscrit.id}) }}">
+                                    <img src="{{ asset('img/add.png') }}" alt="logo add" class="add_logo">
+                                </a>
+                                <a href="">
+                                    <img src="{{ asset('img/remove.png') }}" alt="logo remove" class="remove_logo">
+                                </a>
+                            </li>
                         {% endfor %}
                     {% else %}
                         <li>Aucun Stagiaire disponible</li>
                     {% endif %}
-                </ul>
+                    </ul>
             </div>
             <div class="session_card_img">
                 <a href="">
