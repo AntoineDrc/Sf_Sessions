@@ -21,7 +21,7 @@ class Module
     /**
      * @var Collection<int, SessionModule>
      */
-    #[ORM\OneToMany(targetEntity: SessionModule::class, mappedBy: 'module')]
+    #[ORM\OneToMany(targetEntity: SessionModule::class, mappedBy: 'module', cascade: ['remove'], orphanRemoval: true)]
     private Collection $sessionModules;
 
     #[ORM\ManyToOne(inversedBy: 'modules')]
