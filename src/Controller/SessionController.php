@@ -43,7 +43,7 @@ class SessionController extends AbstractController
             $entityManager->flush();
 
             // Redirige apres soumission
-            return $this->redirectToRoute('listById_formation');
+            return $this->redirectToRoute('list_formation');
         }
 
         // Si le formulaire n'a pas encore été soumis, affiche le formulaire
