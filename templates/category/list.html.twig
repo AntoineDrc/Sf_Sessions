@@ -20,7 +20,7 @@
                         <a href="">
                             <img src="{{ asset('img/write.png') }}" alt="logo crayon" class="edit_logo">
                         </a>
-                        <a href="">
+                        <a href="{{ path('delete_category', {id:category.id} )}}">
                             <img src="{{ asset('img/trash.png') }}" alt="logo corbeille" class="delete_logo">
                         </a>
                     </td>
