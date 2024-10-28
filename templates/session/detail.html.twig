@@ -3,7 +3,7 @@
 {% block title %}Hello SessionController!{% endblock %}
 
 {% block body %}
-    <div class="session_card">
+    <div class="card">
         <div class="session_card_header">
             <h1>{{ session.formation.name }}</h1>
             <h2>Prochaine session :</h2><p>Du {{ session.startDate|date("j/m/Y") }} au {{ session.endDate|date("j/m/Y") }}</p>
@@ -12,12 +12,12 @@
             <h2>Capacité : {{ session.getTauxRemplissage() }}%</h2>
         </div>
         <div class="session_card_module">
+            <a href="{{ path('add_module_session', {session:session.id}) }}">
+                <button type="button" class="btn btn-outline-primary">Ajouter Module</button>
+            </a>
             <div class="module_title">
                 <img src="{{ asset('img/3d.png')}}" alt="logo module" class="module_logo">
                 <h3>Modules</h3>
-                <a href="{{ path('add_module_session', {session:session.id}) }}">
-                    <button type="button">Ajouter Module</button>
-                </a>
             </div>
             <div class="module_list">
                 <ul>

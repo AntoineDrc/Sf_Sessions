@@ -26,6 +26,14 @@ p {
     height: 3em;
 }
 
+.forma {
+    margin-bottom: 1em;
+}
+
+button[type = "button"] {
+    margin: 2em 0 0.7em;
+}
+
 #wrapper {
     display: flex;
     flex-direction: column;
@@ -116,17 +124,30 @@ section h1 {
     margin-top: 0.5em;
 }
 
+.intern_header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2em;
+}
+
+.intern_img {
+    display: flex;
+    justify-content: space-between;
+}
+
 .intern_trash img {
     height: 2em;
 }
 
-.session_card {
+.card {
     display: flex;
     flex-direction: column;
     gap: 2em;
     border: solid 1px black;
     width: fit-content;
     padding: 2em;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -142,8 +163,8 @@ section h1 {
 
 .module_title {
     display: flex;
-    align-items: center;
     gap: 1em;
+    margin-bottom: 0.7em;
 }
 
 .session_card_module {
@@ -164,5 +185,6 @@ section h1 {
 .intern_title {
     display: flex;
     gap: 1em;
-    align-items: center;
+    /* align-items: center; */
+    margin-bottom: 0.7em;
 }

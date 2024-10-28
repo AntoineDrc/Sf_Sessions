@@ -3,17 +3,17 @@
 {% block title %}Liste des Modules{% endblock %}
 
 {% block body %}
-<div class="tableau_module">
+<div class="tableau">
     <h1>Modules</h1>
     <a href="{{ path('new_module') }}">
-        <button type="button">Add Module</button>
+        <button type="button" class="btn btn-outline-primary">Ajouter Module</button>
     </a>
     
     <table class="table table-striped table-bordered">
         <thead class="table-secondary">
             <tr>
                 <th>Module</th>
-                <th>Category</th>
+                <th>Categorie</th>
                 <th>Actions</th>
             </tr>
         </thead>

@@ -17,10 +17,11 @@
                 </div>
                 <div class="welcome">
                     {% if app.user %}
-                        <h1>Welcome back {{ app.user.firstName }}</h1>
+                        <h1>Bonjour {{ app.user.firstName }}</h1>
                         <a href="{{ path('app_logout') }}">Déconnexion</a>
                     {% else %}
-                        <a href="{{ path('app_login') }}">Connexion</a>
+                    <a href="{{ path('app_login') }}">Connexion</a> |
+                    <a href="{{ path('app_register') }}">Inscription</a>
                     {% endif %}
                 </div>
                 <div class="admin_info">
@@ -58,7 +59,7 @@
                         </div>
                         <div class="stagiaires">
                             <img src="{{ asset('img/user.png') }}" alt="logo de user" class="general_logo">
-                            <a href="{{path('list_intern') }}">Interns</a>
+                            <a href="{{path('list_intern') }}">Stagiaires</a>
                         </div>
                         <div class="modules">
                             <img src="{{ asset('img/3d.png') }}" alt="logo module" class="general_logo">

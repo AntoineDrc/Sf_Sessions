@@ -3,10 +3,10 @@
 {% block title %}Intern Details{% endblock %}
 
 {% block body %}
-    <div class="intern_card">
+    <div class="card">
         <div class="intern_header">
             <img src="{{ asset('img/face-detection.png')}}" alt="logo profile intern">
-            <p>{{ intern.firstName }} {{ intern.lastName }}</p>
+            <h4>{{ intern.firstName }} {{ intern.lastName }}</h4>
         </div>
         <div class="intern_body">
             <p>Sex : {{ intern.sex }}</p>
@@ -18,22 +18,34 @@
         <div class="intern_footer">
             <div class="future_session">
                 <h3>Session à venir</h3>
+                {% if futureSessions is not empty %}
+                    <ul>
+                        {% for session in futureSessions %}
+                            <li>{{ session.formation.name }} (du {{ session.startDate|date("d/m/Y") }} au {{ session.endDate|date("m/d/Y") }})</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
                 <ul>
-                    {% for session in futureSessions %}
-                        <li>{{ session.formation.name }} (du {{ session.startDate|date("d/m/Y") }} au {{ session.endDate|date("m/d/Y") }})</li>
-                    {% endfor %}
+                    <li>Aucune session n'est prévue pour ce stagiaire</li>
                 </ul>
+                {% endif %}
             </div>
             <div class="past_session">
                 <h3>Session passées</h3>
+                {% if pastSessions is not empty %}
+                    <ul>
+                        {% for session in pastSessions %}
+                            <li>{{ session.formation.name }} (du {{ session.startDate|date("d/m/Y") }} au {{ session.endDate|date("m/d/Y") }})</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
                 <ul>
-                    {% for session in pastSessions %}
-                        <li>{{ session.formation.name }} (du {{ session.startDate|date("d/m/Y") }} au {{ session.endDate|date("m/d/Y") }})</li>
-                    {% endfor %}
+                    <li>Aucune session passée pour ce stagiaire</li>
                 </ul>
+                {% endif %}
             </div>
         </div>
-        <div class="intern_imgs">
+        <div class="intern_img">
             <div class="edit">
                 <a href=" {{ path('edit_intern', {intern:intern.id}) }}">
                     <img src="{{ asset('img/write.png') }}" alt="logo de crayon" class="edit_logo">
