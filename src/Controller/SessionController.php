@@ -81,4 +81,16 @@ class SessionController extends AbstractController
 
         return $this->redirectToRoute('detail_session', ['id' => $session->getId()]);
     }
+
+    // Méthode de retrait d'un stagiaire à une session spécifique 
+    // #[Route('session{session}/intern{intern}/remove', name: 'remove_intern_session')]
+    // public function addInternSession(Session $session, Intern $intern, EntityManagerInterface $entityManager)
+    // {
+    //     $session->addIntern($intern);
+
+    //     $entityManager->persist($session);
+    //     $entityManager->flush();
+
+    //     return $this->redirectToRoute('detail_session', ['id' => $session->getId()]);
+    // }
 }

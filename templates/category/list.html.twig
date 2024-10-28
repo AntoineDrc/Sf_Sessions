@@ -5,6 +5,10 @@
 {% block body %}
 <div class="tableau tableau_category">
     <h1>Catégories</h1>
+    <a href="{{ path('new_category') }}">
+        <button type="button">Add Category</button>
+    </a>
+
     <table class="table table-striped table-bordered">
         <thead class="table-secondary">
             <tr>
