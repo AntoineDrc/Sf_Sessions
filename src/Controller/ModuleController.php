@@ -28,7 +28,7 @@ class ModuleController extends AbstractController
     // Méthode d'ajout de module
     #[Route('module/new', name: 'new_module')]
     #[Route('module{module}/edit', name: 'edit_module')]
-    public function new_edit(Module $module, Request $request, EntityManagerInterface $entityManager): Response
+    public function new_edit(Module $module = null, Request $request, EntityManagerInterface $entityManager): Response
     {
         if (!$module)
         {

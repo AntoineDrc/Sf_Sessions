@@ -30,7 +30,7 @@ class InternController extends AbstractController
     // Méthode d'ajout de stagiaire
     #[Route('intern/new', name: 'new_intern')]
     #[Route('intern{intern}/edit', name: 'edit_intern')]
-    public function new_edit(Intern $intern, Request $request, EntityManagerInterface $entityManager): Response
+    public function new_edit(Intern $intern = null, Request $request, EntityManagerInterface $entityManager): Response
     {
         if (!$intern)
         {

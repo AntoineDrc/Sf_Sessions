@@ -31,11 +31,11 @@ class SessionController extends AbstractController
     // Méthode d'ajout d'une session
     #[Route('session/new', name: 'new_session')]
     #[Route('session{session}/edit', name: 'edit_session')]
-    public function new(Session $session, Request $request, EntityManagerInterface $entityManager): Response
+    public function new_edit(Session $session = null, Request $request, EntityManagerInterface $entityManager): Response
     {
         if (!$session)
         {
-            $intern = new Session();
+            $session = new Session();
         }
 
         // Crée le formulaire sur le modele de la classe Session généré par la console
