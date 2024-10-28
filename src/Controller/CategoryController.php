@@ -37,9 +37,13 @@ class CategoryController extends AbstractController
 
     // Méthode pour ajouter une catégorie 
     #[Route('category/new', name: 'new_category')]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('category{category}/edit', name: 'edit_category')]
+    public function new_edit(Category $category = null, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $category = new Category();
+        if (!$category)
+        {
+            $category = new Category();
+        }
 
         // Crée le formulaire sur le modele de la classe Category généré par la console
         $form = $this->createForm(CategoryFormType::class, $category);
@@ -49,6 +53,9 @@ class CategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
+            // Récupère les données
+            $category = $form->getData();
+            
             // Persiste les données de la classe Intern dans la BDD
             $entityManager->persist($category);
 

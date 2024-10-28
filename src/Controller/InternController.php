@@ -29,9 +29,13 @@ class InternController extends AbstractController
 
     // Méthode d'ajout de stagiaire
     #[Route('intern/new', name: 'new_intern')]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('intern{intern}/edit', name: 'edit_intern')]
+    public function new_edit(Intern $intern, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $intern = new Intern();
+        if (!$intern)
+        {
+            $intern = new Intern();
+        }
 
         // Crée le formulaire sur le modele de la classe Intern généré par la console
         $form = $this->createForm(InternFormType::class, $intern);

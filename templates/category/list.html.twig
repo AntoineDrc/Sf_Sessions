@@ -21,7 +21,7 @@
                 <tr>
                     <td>{{ category.name }}</td>
                     <td>
-                        <a href="">
+                        <a href="{{ path('edit_category', {category:category.id} )}}">
                             <img src="{{ asset('img/write.png') }}" alt="logo crayon" class="edit_logo">
                         </a>
                         <a href="{{ path('delete_category', {id:category.id} )}}">

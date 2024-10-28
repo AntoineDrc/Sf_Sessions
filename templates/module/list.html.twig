@@ -23,7 +23,7 @@
                     <td>{{ module.name }}</td>
                     <td>{{ module.category.name }}</td>
                     <td>
-                        <a href="">
+                        <a href="{{ path('edit_module', {module:module.id} )}}">
                             <button type="button">Edit</button>
                         </a>
                         <a href="{{ path('delete_module', {id:module.id} )}}">

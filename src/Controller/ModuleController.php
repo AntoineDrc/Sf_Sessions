@@ -27,9 +27,14 @@ class ModuleController extends AbstractController
 
     // Méthode d'ajout de module
     #[Route('module/new', name: 'new_module')]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('module{module}/edit', name: 'edit_module')]
+    public function new_edit(Module $module, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $module = new Module();
+        if (!$module)
+        {
+            $module = new Module();
+        }
+
 
        // Crée le formulaire sur le modele de la classe Intern généré par la console
        $form = $this->createForm(ModuleFormType::class, $module);
