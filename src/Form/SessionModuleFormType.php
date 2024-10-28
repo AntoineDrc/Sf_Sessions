@@ -7,6 +7,7 @@ use App\Entity\Session;
 use App\Entity\SessionModule;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,12 +19,13 @@ class SessionModuleFormType extends AbstractType
             ->add('duration')
             ->add('session', EntityType::class, [
                 'class' => Session::class,
-                'choice_label' => 'id',
+                'choice_label' => 'formation.name',
             ])
             ->add('module', EntityType::class, [
                 'class' => Module::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
             ])
+            ->add('valider', SubmitType::class)
         ;
     }
 

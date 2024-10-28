@@ -14,11 +14,18 @@
             <div class="module_title">
                 <img src="{{ asset('img/3d.png')}}" alt="logo module" class="module_logo">
                 <h3>Modules</h3>
+                <a href="{{ path('add_module_session', {session:session.id}) }}">
+                    <button type="button">Ajouter Module</button>
+                </a>
             </div>
             <div class="module_list">
                 <ul>
                     {% for sessionModule in session.sessionModules %}
-                        <li> {{ sessionModule.module.name }} {{sessionModule.duration }}jours</li>
+                        <li> {{ sessionModule.module.name }} {{sessionModule.duration }}jours
+                            <a href="{{ path('remove_module_session', {session: session.id, module: sessionModule.module.id}) }}">
+                                <img src="{{ asset('img/remove.png') }}" alt="logo remove" class="remove_logo">
+                            </a>
+                        </li>
                     {% endfor %}
                 </ul>
             </div>
