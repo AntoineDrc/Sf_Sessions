@@ -24,10 +24,10 @@
                     <td>{{ module.category.name }}</td>
                     <td>
                         <a href="{{ path('edit_module', {module:module.id} )}}">
-                            <button type="button">Edit</button>
+                            <img src="{{ asset('img/write.png') }}" alt="logo crayon" class="edit_logo">
                         </a>
                         <a href="{{ path('delete_module', {id:module.id} )}}">
-                            <button type="button">Delete</button>
+                            <img src="{{ asset('img/trash.png') }}" alt="logo corbeille" class="delete_logo">
                         </a>
                     </td>
                 </tr>

@@ -28,7 +28,7 @@ class Session
     /**
      * @var Collection<int, SessionModule>
      */
-    #[ORM\OneToMany(targetEntity: SessionModule::class, mappedBy: 'session')]
+    #[ORM\OneToMany(targetEntity: SessionModule::class, mappedBy: 'session', cascade: ['remove'], orphanRemoval: true)]
     private Collection $sessionModules;
 
     /**

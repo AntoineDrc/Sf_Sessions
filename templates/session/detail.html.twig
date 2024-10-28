@@ -6,8 +6,9 @@
     <div class="session_card">
         <div class="session_card_header">
             <h1>{{ session.formation.name }}</h1>
-            <h2>Prochaine session :</h2>
-            <p>Du {{ session.startDate|date("m/d/Y") }} au {{ session.endDate|date("m/d/Y") }}</p>
+            <h2>Prochaine session :</h2><p>Du {{ session.startDate|date("j/m/Y") }} au {{ session.endDate|date("j/m/Y") }}</p>
+        </div>
+        <div class="session_capacite">
             <h2>Capacité : {{ session.getTauxRemplissage() }}%</h2>
         </div>
         <div class="session_card_module">
@@ -30,7 +31,7 @@
                 </ul>
             </div>
         </div>
-        <div class="session_card_intern">
+        <div class="session_card_inscrit">
             <div class="intern_title">
                 <img src="{{ asset('img/user.png')}}" alt="logo user" class="user_logo">
                 <h3>Stagiaires inscrits : {{ session.interns|length }}/{{ session.capacity }} inscrits</h3>
@@ -46,9 +47,14 @@
                     {% endfor %}
                 </ul>
             </div>
+        </div>
             <div class="non_inscrits">
-                <h3>Stagiaires non inscrits</h3>
+                <div class="intern_title">
+                    <img src="{{ asset('img/user.png')}}" alt="logo user" class="user_logo">
+                    <h3>Stagiaires non inscrits</h3>
+                </div>
                 {% if nonInscrits is not empty %}
+                <div class="intern_list">
                     <ul>
                         {% for nonInscrit in nonInscrits %}
                             <li>{{ nonInscrit.firstName }} {{ nonInscrit.lastName }}
@@ -62,6 +68,7 @@
                         <li>Aucun Stagiaire disponible</li>
                     {% endif %}
                     </ul>
+                </div>
             </div>
             <div class="session_card_img">
                 <a href="{{ path('edit_session', {session:session.id}) }}">
@@ -71,6 +78,5 @@
                     <img src="{{ asset('img/trash.png')}}" alt="logo corbeille" class="delete_logo">
                 </a>
             </div>
-        </div>
     </div>
 {% endblock %}

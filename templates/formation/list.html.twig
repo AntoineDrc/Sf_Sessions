@@ -23,7 +23,7 @@
                     </td>
                     {% set nextSession = formation.getNextSession %}
                     {% if nextSession %}
-                        <td>{{ nextSession.startDate|date("m/d/Y") }}</td>
+                        <td>{{ nextSession.startDate|date("d/m/Y") }}</td>
                         <td>{{ nextSession.capacity }}</td>
                         <td>{{ nextSession.interns|length }}</td>
                         <td>{{ nextSession.tauxRemplissage }}%</td>

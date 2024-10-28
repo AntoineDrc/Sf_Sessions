@@ -20,7 +20,7 @@
                 <h3>Session à venir</h3>
                 <ul>
                     {% for session in futureSessions %}
-                        <li>{{ session.formation.name }} (du {{ session.startDate|date("m/d/Y") }} au {{ session.endDate|date("m/d/Y") }})</li>
+                        <li>{{ session.formation.name }} (du {{ session.startDate|date("d/m/Y") }} au {{ session.endDate|date("m/d/Y") }})</li>
                     {% endfor %}
                 </ul>
             </div>
@@ -28,7 +28,7 @@
                 <h3>Session passées</h3>
                 <ul>
                     {% for session in pastSessions %}
-                        <li>{{ session.formation.name }} (du {{ session.startDate|date("m/d/Y") }} au {{ session.endDate|date("m/d/Y") }})</li>
+                        <li>{{ session.formation.name }} (du {{ session.startDate|date("d/m/Y") }} au {{ session.endDate|date("m/d/Y") }})</li>
                     {% endfor %}
                 </ul>
             </div>
