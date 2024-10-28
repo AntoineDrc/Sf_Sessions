@@ -12,6 +12,13 @@ p {
 
 .edit_logo, .delete_logo, .module_logo, .user_logo, .program_logo {
     height: 2em;
+    transition: transform 0.4s, opacity 0.2s;
+}
+
+.edit_logo:hover,
+.delete_logo:hover,
+.program_logo:hover {
+    transform: scale(1.1); 
 }
 
 .remove_logo, .add_logo {
@@ -150,6 +157,19 @@ section h1 {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+.card li {
+    width: 20em;            
+    display: flex;          
+    justify-content: space-between; 
+    align-items: center;    
+    padding: 0.5em;         
+    border-bottom: 1px solid #ddd; 
+}
+
+.module_list, .intern_list {
+    display: flex;
+    justify-content: space-between;
+}
 
 .session_card_header {
     display: flex;

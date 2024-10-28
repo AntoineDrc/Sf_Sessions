@@ -22,7 +22,7 @@
             <div class="module_list">
                 <ul>
                     {% for sessionModule in session.sessionModules %}
-                        <li> {{ sessionModule.module.name }} {{sessionModule.duration }}jours
+                        <li> {{ sessionModule.module.name }} : {{sessionModule.duration }} jours
                             <a href="{{ path('remove_module_session', {session: session.id, module: sessionModule.module.id}) }}">
                                 <img src="{{ asset('img/remove.png') }}" alt="logo remove" class="remove_logo">
                             </a>
