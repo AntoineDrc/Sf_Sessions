@@ -30,12 +30,16 @@ class SessionController extends AbstractController
     
     // Méthode d'ajout d'une session
     #[Route('session/new', name: 'new_session')]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('session{session}/edit', name: 'edit_session')]
+    public function new(Session $session, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $intern = new Session();
+        if (!$session)
+        {
+            $intern = new Session();
+        }
 
-        // Crée le formulaire sur le modele de la classe Intern généré par la console
-        $form = $this->createForm(SessionFormType::class, $intern);
+        // Crée le formulaire sur le modele de la classe Session généré par la console
+        $form = $this->createForm(SessionFormType::class, $session);
 
         // Gère la requete pour remplir le formulaire avec les données soumises
         $form->handleRequest($request);
@@ -43,7 +47,7 @@ class SessionController extends AbstractController
         if ($form->isSubmitted() && $form->isValid())
         {
             // Persiste les données de la classe Intern dans la BDD
-            $entityManager->persist($intern);
+            $entityManager->persist($session);
 
             // Sauvegarde les changements en BDD
             $entityManager->flush();

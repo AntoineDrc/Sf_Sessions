@@ -59,7 +59,7 @@
                     </ul>
             </div>
             <div class="session_card_img">
-                <a href="">
+                <a href="{{ path('edit_session', {session:session.id}) }}">
                     <img src="{{ asset('img/write.png')}}" alt="logo crayon" class="edit_logo">
                 </a>
                 <a href="{{ path('delete_session', {id:session.id}) }}">
