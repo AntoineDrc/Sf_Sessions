@@ -20,7 +20,7 @@ class InternController extends AbstractController
     #[Route('intern', name: 'list_intern')]
     public function list(InternRepository $internRepository): Response
     {
-        $interns = $internRepository->findAll();
+        $interns = $internRepository->findBy([], ['firstName' => 'ASC'] );
 
         return $this->render('intern/list.html.twig', [
             'interns' => $interns,

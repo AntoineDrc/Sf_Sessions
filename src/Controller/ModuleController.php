@@ -18,7 +18,7 @@ class ModuleController extends AbstractController
     #[Route('module', name: 'list_module')]
     public function list(ModuleRepository $moduleRepository): Response
     {
-        $modules = $moduleRepository->findAll();
+        $modules = $moduleRepository->findBy([], ['name' => 'ASC']);
 
         return $this->render('module/list.html.twig', [
             'modules' => $modules,
