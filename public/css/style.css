@@ -212,7 +212,7 @@ section h1 {
 }
 
 
-@media screen and (max-width: 690px) {
+@media screen and (max-width: 830px) {
 
     #wrapper {
         font-size: 0.9em;
@@ -242,19 +242,23 @@ section h1 {
         font-size: 0.8em;
     }
 
+    .tableau {
+        font-size: 0.8em;
+    }
+
     button[type='button'] {
         font-size: 0.9em;
     }
 }
 
-@media screen and (max-width: 518px) {
+@media screen and (max-width: 620px) {
     
     #wrapper {
         font-size: 0.8em;
     }
 
     table {
-        font-size: 0.6em;
+        font-size: 0.75em;
     }
 
     .intern {
