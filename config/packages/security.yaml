@@ -37,11 +37,11 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         
-        # Restriction pour toutes les routes contenant "new", "edit" (ajout et modification) ou "add"
-        - { path: ^/(.*)/(new|edit|add), roles: ROLE_USER }
+        # Restriction pour toutes les routes contenant "new", "edit", ou "add" pour ROLE_ADMIN uniquement
+        - { path: ^/[^/]+/(new|edit|add), roles: ROLE_ADMIN }
 
-        # Restriction pour toutes les routes contenant "delete"
-        - { path: ^/(.*)/delete, roles: ROLE_ADMIN }
+    # Restriction pour toutes les routes contenant "delete" pour ROLE_ADMIN uniquement
+        - { path: ^/[^/]+/delete, roles: ROLE_ADMIN }
 
 when@test:
     security:
